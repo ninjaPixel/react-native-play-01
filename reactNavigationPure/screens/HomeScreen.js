@@ -1,4 +1,3 @@
-// import Expo from 'expo';
 import React from 'react';
 import {StyleSheet, Text, View, ScrollView, Platform} from 'react-native';
 import {StackNavigator, TabNavigator} from 'react-navigation';
@@ -10,12 +9,12 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import Button from 'apsl-react-native-button';
 
 class HomeScreen extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+    // constructor(props) {
+    //     super(props);
+    // }
 
     static navigationOptions = {
-        // title: 'React Navigator',
+        title: 'Home',
         header: {
             visible: false
         }
@@ -79,7 +78,7 @@ class HomeScreen extends React.Component {
 
         return countriesAndCities.map((d, i) => {
             return (
-                <View style={styles.buttonContainer} key={i}>
+                <View key={i}>
                     <Button style={styles.button} textStyle={styles.buttonText} onPress={() => {
                         this.handleCountryButtonClick(d)
                     }}>
@@ -100,10 +99,12 @@ class HomeScreen extends React.Component {
 
     render() {
         return (
-            <ScrollView style={styles.container}>
+            <ScrollView style={styles.homeContainer}>
                 <Text style={styles.text}>This simple app demos the features of react-navigator.</Text>
                 <Text style={styles.text}>Choose a country to visit:</Text>
-                {this.renderCountryButtons()}
+                <View style={styles.buttonContainer}>
+                  {this.renderCountryButtons()}
+                </View>
             </ScrollView>
         );
     }
@@ -170,7 +171,5 @@ const SimpleApp = StackNavigator({
     headerMode: 'screen',
     backTitle: null
 });
-// Expo.registerRootComponent(SimpleApp);
-// Expo.registerRootComponent(Playground);
 
 export default SimpleApp;

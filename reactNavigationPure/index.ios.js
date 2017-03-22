@@ -11,13 +11,12 @@ import {
   Text,
   View
 } from 'react-native';
-// import SimpleApp from './screens/HomeScreen';
+import SimpleApp from './screens/HomeScreen';
 // import Playground from './js/App';
-import MickeyMouse from './screens/MickeyMouse';
+// import MickeyMouse from './screens/MickeyMouse';
 
 
-// AppRegistry.registerComponent('reactNavigationPure', () => reactNavigationPure);
-// AppRegistry.registerComponent('reactNavigationPure', () => SimpleApp);
-AppRegistry.registerComponent('reactNavigationPure', () => MickeyMouse);
+AppRegistry.registerComponent('reactNavigationPure', () => SimpleApp);
+// AppRegistry.registerComponent('reactNavigationPure', () => MickeyMouse);
 
 // AppRegistry.registerComponent('reactNavigationPure', () => Playground);

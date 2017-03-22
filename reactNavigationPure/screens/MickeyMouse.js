@@ -61,14 +61,20 @@ const countriesAndCities = [
 const lorem = "Marfa bushwick distillery venmo readymade, seitan taxidermy single-origin coffee. Fashion axe iPhone pug, edison bulb pinterest bicycle rights intelligentsia chartreuse cronut try-hard subway tile blog typewriter. Microdosing pitchfork kogi forage, vape fixie green juice austin fam fap cray poutine bespoke art party. Kale chips hella meggings neutra put a bird on it la croix, kombucha try-hard stumptown disrupt pour-over. Fam beard migas, pinterest poke woke intelligentsia franzen 90's raw denim af vaporware vinyl. Woke affogato intelligentsia gochujang, schlitz tumblr authentic artisan echo park kickstarter pour-over food truck retro hashtag. Hammock thundercats four loko messenger bag unicorn keytar, dreamcatcher truffaut poutine lumber flannel heirloom photo booth biodiesel gochujang.";
 class MainScreen extends React.Component {
     static navigationOptions = {
-        title: 'Welcome'
+        // title: 'Home',
+        header: {
+            visible: false
+        }
     };
 
     renderButtons(navigate) {
         return countriesAndCities.map((d, i) => {
             return (
                 <View style={styles.buttonContainer} key={i}>
-                    <Button style={styles.button} textStyle={styles.buttonText} onPress={() => navigate('Country', {country: d.country, cities:d.cities})}>
+                    <Button style={styles.button} textStyle={styles.buttonText} onPress={() => navigate('Country', {
+                        country: d.country,
+                        cities: d.cities
+                    })}>
                         {d.country}
                     </Button>
                 </View>
@@ -80,7 +86,7 @@ class MainScreen extends React.Component {
         const {navigate} = this.props.navigation;
         return (
             <ScrollView style={styles.container}>
-              {this.renderButtons(navigate)}
+                {this.renderButtons(navigate)}
             </ScrollView>
         );
     }
@@ -97,7 +103,7 @@ class CountryScreen extends React.Component {
         return cities.map((d, i) => {
             return (
                 <View style={styles.buttonContainer} key={i}>
-                    <Button style={styles.button} textStyle={styles.buttonText} onPress={() => navigate('Profile', {city:d.city})}>
+                    <Button style={styles.button} textStyle={styles.buttonText} onPress={() => navigate('Profile', {city: d.city})}>
                         {d.city}
                     </Button>
                 </View>
@@ -106,12 +112,12 @@ class CountryScreen extends React.Component {
     }
 
     render() {
-      const {navigate, state} = this.props.navigation;
-      return (
-          <ScrollView style={styles.container}>
-            {this.renderButtons(navigate, state.params.cities)}
-          </ScrollView>
-      );
+        const {navigate, state} = this.props.navigation;
+        return (
+            <ScrollView style={styles.container}>
+                {this.renderButtons(navigate, state.params.cities)}
+            </ScrollView>
+        );
     }
 }
 
@@ -140,9 +146,14 @@ const App = StackNavigator({
     Country: {
         screen: CountryScreen
     },
-    Profile:{
-      screen:ProfileScreen
+    Profile: {
+        screen: ProfileScreen
     }
+}
+,{
+  initialRouteName: 'Main',
+  headerMode: 'screen',
+  backTitle: null
 });
 
 export default App;
