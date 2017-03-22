@@ -103,41 +103,40 @@ class HomeScreen extends React.Component {
                 <Text style={styles.text}>This simple app demos the features of react-navigator.</Text>
                 <Text style={styles.text}>Choose a country to visit:</Text>
                 <View style={styles.buttonContainer}>
-                  {this.renderCountryButtons()}
+                    {this.renderCountryButtons()}
                 </View>
             </ScrollView>
         );
     }
 }
 
-CityInfoScreen.navigationOptions = {
-    tabBar: {
-        label: 'Info',
-        icon: ({tintColor, focused}) => (<Ionicons name={focused
-            ? 'ios-settings'
-            : 'ios-settings-outline'} size={26} style={{
-            color: tintColor
-        }}/>)
-    }
+const renderTabIcon = (tintColor, focused, focusedIcon, unfocusedIcon) => {
+  return(
+    <Ionicons name={focused ? focusedIcon : unfocusedIcon}
+      size={26} style={{color: tintColor}}/>
+  );
 };
 
-CityMapScreen.navigationOptions = {
-    tabBar: {
-        label: 'Map',
-        icon: ({tintColor, focused}) => (<Ionicons name={focused
-            ? 'ios-map'
-            : 'ios-map-outline'} size={26} style={{
-            color: tintColor
-        }}/>)
-    }
-};
 
 const CityTabNavigator = TabNavigator({
     Info: {
-        screen: CityInfoScreen
+        screen: CityInfoScreen,
+        navigationOptions: {
+            tabBar: {
+                label: 'Info',
+                icon: ({tintColor, focused}) => renderTabIcon(tintColor, focused, 'ios-settings', 'ios-settings-outline')
+
+            }
+        }
     },
     Map: {
-        screen: CityMapScreen
+        screen: CityMapScreen,
+        navigationOptions: {
+            tabBar: {
+                label: 'Map',
+                icon: ({tintColor, focused}) => renderTabIcon(tintColor, focused, 'ios-map', 'ios-map-outline')
+            }
+        }
     }
 }, {
     tabBarOptions: {
@@ -152,6 +151,7 @@ CityTabNavigator.navigationOptions = {
     title: ({state}) => {
         return state.params.city;
     }
+
 };
 
 const SimpleApp = StackNavigator({
