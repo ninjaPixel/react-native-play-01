@@ -1,0 +1,3 @@
+rootProject.name = 'tripReviser'
+
+include ':app'
